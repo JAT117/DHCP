@@ -16,17 +16,19 @@ Ack
 #include <sys/socket.h>
 #include <sys/time.h>
 
-#define SERVER "129.120.151.94"		 	//IP address of server
+#define SERVER "129.120.151.94"		 	//IP address of server cse01.cse.unt.edu
 #define BUFLEN 512  				//Max length of buffer
 #define TRANS_MIN 100 				//minimum value for transaction id
 #define TRANS_MAX 999 				//maximum value for transaction id
 
-void ERROR(char *s){
+void ERROR(char *s)
+{
     perror(s);
     exit(1);
 }
 
-struct Message{
+struct Message
+{
 	int trans_id;				//transaction ID
 	char ip[32];				//IP address
 	int lifetime;				//lifetime
@@ -43,16 +45,16 @@ int main(int argc, char *argv[])
 	char ip[32];
 	int tid;									//randomly generated transaction ID
 
-  if (argc != 2)
-  {
-		printf("usage: ./c  <port>\n");
-		exit(0);
-  }
+	  if (argc != 2)
+	  {
+			printf("usage: ./c  <port>\n");
+			exit(0);
+	  }
 
 	system("clear");
 	printf("This is a UDP client\n\n");
 
-	if ((s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)
+	if ((s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)		//checks for socket to send UDP
 	{
 		ERROR("Error: socket\n");
 	}
